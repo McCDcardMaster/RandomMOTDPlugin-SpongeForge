@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url = 'https://repo.spongepowered.org/maven'
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'org.spongepowered:spongegradle:0.8.1'
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+apply plugin: 'org.spongepowered.plugin'
+
+group = 'com.github.mccdcardguy.rmotdplugin'
+version = '1.0'
+description = 'Random MOTD!'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://repo.spongepowered.org/maven'
+    }
+}
+
+dependencies {
+    implementation 'org.spongepowered:spongeapi:7.4.0'
+    compileOnly 'org.spongepowered:spongeapi:7.4.0'
+}
+
+sponge {
+    plugin {
+        id = 'rmotdplugin'
+    }
+}
+
+jar {
+    baseName = "RandomMOTDPlugin-SpongeForge-7.4.0"
+    version = project.version
+    
+    manifest {
+        attributes(
+            'Manifest-Version': '1.0',
+            'Built-By': System.getProperty('user.name'),
+            'Build-Jdk': System.getProperty('java.version'),
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': project.group
+        )
+    }
+}
